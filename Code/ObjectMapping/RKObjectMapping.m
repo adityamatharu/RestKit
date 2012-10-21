@@ -177,8 +177,11 @@ NSDate *RKDateFromStringWithFormatters(NSString *dateString, NSArray *formatters
 - (id)mappingForSourceKeyPath:(NSString *)sourceKeyPath
 {
     for (RKPropertyMapping *mapping in self.propertyMappings) {
+        if (mapping.sourceKeyPath != [NSNull null]) {
+
         if ([mapping.sourceKeyPath isEqualToString:sourceKeyPath]) {
             return mapping;
+        }
         }
     }
 
