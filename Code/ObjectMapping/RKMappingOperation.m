@@ -287,9 +287,12 @@ static BOOL RKIsManagedObject(id object)
 {
     NSMutableArray *mappings = [NSMutableArray array];
     for (RKAttributeMapping *mapping in [self applyNestingToMappings:self.objectMapping.attributeMappings]) {
+        if (mapping.sourceKeyPath != [NSNull null]) {
+
         if ([mapping.sourceKeyPath rangeOfString:@"."].location == NSNotFound) {
             [mappings addObject:mapping];
         }
+       }
     }
 
     return mappings;
@@ -299,9 +302,12 @@ static BOOL RKIsManagedObject(id object)
 {
     NSMutableArray *mappings = [NSMutableArray array];
     for (RKAttributeMapping *mapping in [self applyNestingToMappings:self.objectMapping.attributeMappings]) {
+        if (mapping.sourceKeyPath != [NSNull null]) {
+
         if ([mapping.sourceKeyPath rangeOfString:@"."].location != NSNotFound) {
             [mappings addObject:mapping];
         }
+       }
     }
 
     return mappings;
